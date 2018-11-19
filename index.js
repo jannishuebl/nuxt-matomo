@@ -8,8 +8,8 @@ module.exports = function nuxtMatomo (options) {
 
   // Add matomo script to head
   let config_js = "window['_paq'] = [];";
-  config_js += "window['_paq'].push(['setTrackerUrl', '" + (options.trackerUrl || (options.matomoUrl || options.piwikUrl)+'piwik.php') + "']);"
-  config_js += "window['_paq'].push(['setSiteId', '" + options.siteId + "']);"
+  config_js += "window['_paq'].push(['setTrackerUrl', '" + (process.env.MATOMO_URL || options.trackerUrl || (options.matomoUrl || options.piwikUrl)+'piwik.php') + "']);"
+  config_js += "window['_paq'].push(['setSiteId', '" + (process.env.MATOMO_SITE_ID || options.siteId)   + "']);"
 
   if (options.cookies === false) {
     config_js += "window['_paq'].push(['disableCookies']);"
